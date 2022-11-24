@@ -1,0 +1,1624 @@
+{
+	"info": {
+		"_postman_id": "102cc07c-2939-4a28-ac3b-3b4be03e61b3",
+		"name": "SSA - Admin API's",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22110157"
+	},
+	"item": [
+		{
+			"name": "SSA-Op Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"pm.environment.set(\"ssa.accessToken\",  responseJson.accessToken);\r",
+							"pm.environment.set(\"ssa.application.refreshToken\",  responseJson.refreshToken);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"usernameOrEmail\": \"super.admin\",\r\n  \"password\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://qa.api-ssa.etugra.com.pk:6060/rss/service/core/v1/applications/authenticate",
+					"protocol": "https",
+					"host": [
+						"qa",
+						"api-ssa",
+						"etugra",
+						"com",
+						"pk"
+					],
+					"port": "6060",
+					"path": [
+						"rss",
+						"service",
+						"core",
+						"v1",
+						"applications",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Crypto-Profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"status\": \"ACTIVE\",\r\n  \"friendlyName\": \"ssa-crypto\",\r\n  \"connectionPoolSize\": 2,\r\n  \"type\": \"PKCS11\",\r\n  \"vendor\": \"THALES_LUNA\",\r\n  \"pkcs11Module\": \"test crypto profile\",\r\n  \"slot\": \"3\",\r\n  \"pin\": \"CryptoPin\",\r\n  \"enableFIPS\": true,\r\n  \"soUser\": \"string\",\r\n  \"soPassword\": \"string\",\r\n  \"code\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/crypto/profiles/create",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"crypto",
+						"profiles",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Crypto-Profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"status\": \"ACTIVE\",\r\n  \"friendlyName\": \"ssa-crypto\",\r\n  \"connectionPoolSize\": 2,\r\n  \"type\": \"PKCS11\",\r\n  \"vendor\": \"THALES_LUNA\",\r\n  \"pkcs11Module\": \"test crypto profile ok\",\r\n  \"slot\": \"3\",\r\n  \"pin\": \"CryptoPin\",\r\n  \"enableFIPS\": true,\r\n  \"soUser\": \"string\",\r\n  \"soPassword\": \"string\",\r\n  \"code\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/crypto/profiles/update",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"crypto",
+						"profiles",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crypto-Profile[Fetch-slots]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"status\": \"ACTIVE\",\r\n  \"friendlyName\": \"ssa-crypto\",\r\n  \"connectionPoolSize\": 2,\r\n  \"type\": \"PKCS11\",\r\n  \"vendor\": \"THALES_LUNA\",\r\n  \"pkcs11Module\": \"test crypto profile\",\r\n  \"slot\": \"3\",\r\n  \"pin\": \"CryptoPin\",\r\n  \"enableFIPS\": true,\r\n  \"soUser\": \"string\",\r\n  \"soPassword\": \"string\",\r\n  \"code\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/crypto/profiles/slots",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"crypto",
+						"profiles",
+						"slots"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crypto-Profile[Test-Conn]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"status\": \"ACTIVE\",\r\n  \"friendlyName\": \"ssa-crypto\",\r\n  \"connectionPoolSize\": 2,\r\n  \"type\": \"PKCS11\",\r\n  \"vendor\": \"THALES_LUNA\",\r\n  \"pkcs11Module\": \"test crypto profile\",\r\n  \"slot\": \"3\",\r\n  \"pin\": \"CryptoPin\",\r\n  \"enableFIPS\": true,\r\n  \"soUser\": \"string\",\r\n  \"soPassword\": \"string\",\r\n  \"code\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/crypto/profiles/test",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"crypto",
+						"profiles",
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get [Crypto-Profiles]",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/crypto/profiles",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"crypto",
+						"profiles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Infra-key",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"keyLength\": 160,\r\n  \"keyAlias\": \"crypto.key\",\r\n  \"keyPurpose\": \"TLS_SERVER\",\r\n  \"keyAlgorithm\": \"ECDSA\",\r\n  \"status\": \"ACTIVE\",\r\n  \"description\": \"Purpose of keys being used for.\",\r\n  \"keyProfile\": \"Soft-Crypto\",\r\n  \"keyAttribute\": \"NIST_P\",\r\n  \"code\": \"string\",\r\n  \"certificateData\": \"string\",\r\n  \"csr\": \"string\",\r\n  \"systemCertificate\": \"string\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/crypto/keys/create",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"crypto",
+						"keys",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get [Infra-keys]",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/crypto/keys",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"crypto",
+						"keys"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Generate - Infrakey[CSR]",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/crypto/keys/getCSR/crypto.key",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"crypto",
+						"keys",
+						"getCSR",
+						"crypto.key"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Download - Certificate",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://qa.api-ssa.etugra.com.pk:6060/rss/service/admin/v1/crypto/keys/downloadCertificate/crypto.key",
+					"protocol": "https",
+					"host": [
+						"qa",
+						"api-ssa",
+						"etugra",
+						"com",
+						"pk"
+					],
+					"port": "6060",
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"crypto",
+						"keys",
+						"downloadCertificate",
+						"crypto.key"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Privil-Role",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"roleId\": \"ssa.testRole\",\r\n        \"roleDescription\": \"Privileged Super User that can perform and approve all configurations in the system\",\r\n        \"modules\": [\r\n            {\r\n                \"module\": \"ACCESS_MANAGEMENT\",\r\n                \"moduleName\": \"Access Management\",\r\n                \"subModules\": [\r\n                    {\r\n                        \"subModule\": \"OPERATOR_MANAGER\",\r\n                        \"subModuleName\": \"Operator Manager\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    },\r\n                    {\r\n                        \"subModule\": \"ROLES_MANAGER\",\r\n                        \"subModuleName\": \"Roles & Permissions\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    }\r\n                ]\r\n            },\r\n            {\r\n                \"module\": \"ALERT_SETTINGS\",\r\n                \"moduleName\": \"Alerts Configurations\",\r\n                \"subModules\": [\r\n                    {\r\n                        \"subModule\": \"EMAIL_CONFIGURATIONS\",\r\n                        \"subModuleName\": \"Email Configurations\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    },\r\n                    {\r\n                        \"subModule\": \"SMS_CONFIGURATIONS\",\r\n                        \"subModuleName\": \"SMS Configurations\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    },\r\n                    {\r\n                        \"subModule\": \"SYSTEM_ALERTS\",\r\n                        \"subModuleName\": \"System Alerts\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    }\r\n                ]\r\n            },\r\n            {\r\n                \"module\": \"BUSINESS_APPLICATIONS\",\r\n                \"moduleName\": \"Business Applications\",\r\n                \"accessRights\": {\r\n                    \"readAccess\": true,\r\n                    \"createAccess\": true,\r\n                    \"deleteAccess\": true,\r\n                    \"approvalRequired\": false,\r\n                    \"approvingAuthority\": true\r\n                }\r\n            },\r\n            {\r\n                \"module\": \"CRYPTO_MANAGEMENT\",\r\n                \"moduleName\": \"Crypto Management\",\r\n                \"subModules\": [\r\n                    {\r\n                        \"subModule\": \"CRYPTO_PROFILES\",\r\n                        \"subModuleName\": \"Crypto Profiles\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    },\r\n                    {\r\n                        \"subModule\": \"KEY_MANAGER\",\r\n                        \"subModuleName\": \"Key Management\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    }\r\n                ]\r\n            },\r\n            {\r\n                \"module\": \"SSA_SERVICE\",\r\n                \"moduleName\": \"SSA Service\",\r\n                \"subModules\": [\r\n                    {\r\n                        \"subModule\": \"SIGNING_USERS\",\r\n                        \"subModuleName\": \"Signing Users\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    },\r\n                    {\r\n                        \"subModule\": \"SSA_CONFIGURATIONS\",\r\n                        \"subModuleName\": \"SSA Configurations\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    },\r\n                    {\r\n                        \"subModule\": \"SSA_TEMPLATES\",\r\n                        \"subModuleName\": \"SSA Templates\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    },\r\n                    {\r\n                        \"subModule\": \"SSA_TRANSACTION_LOGS\",\r\n                        \"subModuleName\": \"Transaction Logs\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    }\r\n                ]\r\n            },\r\n            {\r\n                \"module\": \"SYSTEM_SETTINGS\",\r\n                \"moduleName\": \"System Settings\",\r\n                \"subModules\": [\r\n                    {\r\n                        \"subModule\": \"GLOBAL_CONNECTORS\",\r\n                        \"subModuleName\": \"Global Connectors\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    },\r\n                    {\r\n                        \"subModule\": \"LICENSE_MANAGER\",\r\n                        \"subModuleName\": \"License Manager\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    },\r\n                    {\r\n                        \"subModule\": \"SYSTEM_CONFIGURATIONS\",\r\n                        \"subModuleName\": \"System Configurations\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    },\r\n                    {\r\n                        \"subModule\": \"SYSTEM_SECURITY\",\r\n                        \"subModuleName\": \"System Security\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/roles/add",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"roles",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Privil-Role",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"roleId\": \"ssa.testRole\",\r\n        \"roleDescription\": \"Privileged ssa test User that can perform and approve all configurations in the system\",\r\n        \"modules\": [\r\n            {\r\n                \"module\": \"ACCESS_MANAGEMENT\",\r\n                \"moduleName\": \"Access Management\",\r\n                \"subModules\": [\r\n                    {\r\n                        \"subModule\": \"OPERATOR_MANAGER\",\r\n                        \"subModuleName\": \"Operator Manager\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    },\r\n                    {\r\n                        \"subModule\": \"ROLES_MANAGER\",\r\n                        \"subModuleName\": \"Roles & Permissions\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    }\r\n                ]\r\n            },\r\n            {\r\n                \"module\": \"ALERT_SETTINGS\",\r\n                \"moduleName\": \"Alerts Configurations\",\r\n                \"subModules\": [\r\n                    {\r\n                        \"subModule\": \"EMAIL_CONFIGURATIONS\",\r\n                        \"subModuleName\": \"Email Configurations\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    },\r\n                    {\r\n                        \"subModule\": \"SMS_CONFIGURATIONS\",\r\n                        \"subModuleName\": \"SMS Configurations\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    },\r\n                    {\r\n                        \"subModule\": \"SYSTEM_ALERTS\",\r\n                        \"subModuleName\": \"System Alerts\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    }\r\n                ]\r\n            },\r\n            {\r\n                \"module\": \"BUSINESS_APPLICATIONS\",\r\n                \"moduleName\": \"Business Applications\",\r\n                \"accessRights\": {\r\n                    \"readAccess\": true,\r\n                    \"createAccess\": true,\r\n                    \"deleteAccess\": true,\r\n                    \"approvalRequired\": false,\r\n                    \"approvingAuthority\": true\r\n                }\r\n            },\r\n            {\r\n                \"module\": \"CRYPTO_MANAGEMENT\",\r\n                \"moduleName\": \"Crypto Management\",\r\n                \"subModules\": [\r\n                    {\r\n                        \"subModule\": \"CRYPTO_PROFILES\",\r\n                        \"subModuleName\": \"Crypto Profiles\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    },\r\n                    {\r\n                        \"subModule\": \"KEY_MANAGER\",\r\n                        \"subModuleName\": \"Key Management\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    }\r\n                ]\r\n            },\r\n            {\r\n                \"module\": \"SSA_SERVICE\",\r\n                \"moduleName\": \"SSA Service\",\r\n                \"subModules\": [\r\n                    {\r\n                        \"subModule\": \"SIGNING_USERS\",\r\n                        \"subModuleName\": \"Signing Users\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    },\r\n                    {\r\n                        \"subModule\": \"SSA_CONFIGURATIONS\",\r\n                        \"subModuleName\": \"SSA Configurations\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    },\r\n                    {\r\n                        \"subModule\": \"SSA_TEMPLATES\",\r\n                        \"subModuleName\": \"SSA Templates\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    },\r\n                    {\r\n                        \"subModule\": \"SSA_TRANSACTION_LOGS\",\r\n                        \"subModuleName\": \"Transaction Logs\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    }\r\n                ]\r\n            },\r\n            {\r\n                \"module\": \"SYSTEM_SETTINGS\",\r\n                \"moduleName\": \"System Settings\",\r\n                \"subModules\": [\r\n                    {\r\n                        \"subModule\": \"GLOBAL_CONNECTORS\",\r\n                        \"subModuleName\": \"Global Connectors\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    },\r\n                    {\r\n                        \"subModule\": \"LICENSE_MANAGER\",\r\n                        \"subModuleName\": \"License Manager\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    },\r\n                    {\r\n                        \"subModule\": \"SYSTEM_CONFIGURATIONS\",\r\n                        \"subModuleName\": \"System Configurations\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    },\r\n                    {\r\n                        \"subModule\": \"SYSTEM_SECURITY\",\r\n                        \"subModuleName\": \"System Security\",\r\n                        \"accessRights\": {\r\n                            \"readAccess\": true,\r\n                            \"createAccess\": true,\r\n                            \"deleteAccess\": true,\r\n                            \"approvalRequired\": false,\r\n                            \"approvingAuthority\": true\r\n                        }\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/roles/update",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"roles",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Privil-Roles",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/roles/list",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"roles",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register Privil-Operator",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"code\": \"0000\",\r\n  \"id\": 5,\r\n  \"userId\": \"Ssa-Operators\",\r\n  \"mobile\": \"00923218351459\",\r\n  \"role\": \"ssa.testRole\",\r\n  \"status\": \"ACTIVE\",\r\n  \"password\": \"Ilovepak\",\r\n  \"email\": \"dictalabse@company.com\",\r\n  \"username\": \"System Operators\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/operators/register",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"operators",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Privil-Operator",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"code\": \"0000\",\r\n  \"id\": 5,\r\n  \"userId\": \"Ssa-Operators\",\r\n  \"mobile\": \"00923218351459\",\r\n  \"role\": \"ssa.testRole\",\r\n  \"status\": \"ACTIVE\",\r\n  \"password\": \"Ilovepak143\",\r\n  \"email\": \"dictalabse@company.com\",\r\n  \"username\": \"System Operators\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/operators/update",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"operators",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get [Privil-Operators]",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/operators/list",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"operators",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add SSA-Configuration",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"ssaLogOperation\": true,\r\n  \"pushNotification\": true,\r\n  \"defaultClient\": \"Sample SSA Client\",\r\n  \"hmacKeyAlias\": \"HMAC.key\",\r\n  \"configurations\": \"Configuration\",\r\n  \"notificationTitle\": \"Need Authorization for Signing\",\r\n  \"notificationMessage\": \"This notification is sent to you to notify for authorization required for signing\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/ssa/v1/admin/ssanotification/add",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"ssa",
+						"v1",
+						"admin",
+						"ssanotification",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get [SSA-Configurations]",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/ssa/v1/admin/ssanotification/list",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"ssa",
+						"v1",
+						"admin",
+						"ssanotification",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add SSA-Template",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"templateId\": \"demo.temp\",\r\n  \"status\": \"ACTIVE\",\r\n  \"templateName\": \"Demo Template\",\r\n  \"templateDescription\": \"test the template\",\r\n  \"samAddress\": [\r\n    \"https://qa.app-sam.etugra.com.pk:4210\"\r\n  ],\r\n  \"samClientId\": \"t.client\",\r\n  \"samClientSecret\": \"ce82cbb4-7635-4edc-ac87-b7b637c55845\",\r\n  \"samCryptoSource\": \"\",\r\n  \"qualifiedKeyAlgorithm\": \"ECDSA\",\r\n  \"qualifiedKeyAttribute\": \"NIST_P\",\r\n  \"qualifiedKeyLength\": 224,\r\n  \"paddingScheme\": \"PKCS1\",\r\n  \"userAuthorization\": \"OnlyOnce\",\r\n  \"computeHashing\": false,\r\n\r\n  \"bulkSigning\": false,\r\n  \r\n  \"sadExpiry\": \"2\",\r\n  \"scalLevel\": \"SCAL2\",\r\n  \"sadHashAlgo\": \"SHA-256\",\r\n  \"sadUnit\": \"Hours\",\r\n  \"noAuthentication\": true,\r\n  \"basicAuthentication\": true,\r\n  \"authorizationType\": \"Explicit\",\r\n \r\n  \"pinBasedAuthentication\": true,\r\n  \"pinLabel\": \"12345\",\r\n  \"pinDescription\": \"Enter pin\",\r\n  \"otpBasedAuthentication\": true,\r\n  \"otpLabel\": \"string\",\r\n  \"sendOtpVia\": \"SMS\",\r\n  \"otpDescription\": \"send otp to mobile\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/template/add",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"template",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get [SSA-templates]",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/template/list",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"template",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Signig-Users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/signinguser/list",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"signinguser",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Transaction-Logs",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/transactionlogs/list",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"transactionlogs",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add System-Config",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"code\": \"string\",\r\n  \"parameterId\": \"JWT-token\",\r\n  \"parameterValue\": \"85400000\",\r\n  \"parameterObject\": \"Token expiry time\",\r\n  \"description\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/system/conf/add",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"system",
+						"conf",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get System-Configs",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/system/conf",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"system",
+						"conf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Global Connector",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{sam.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n  \"connectorId\": \"1234567811\",\r\n  \"status\": \"\",\r\n  \"provider\": \"\",\r\n  \"displayName\": \"\",\r\n  \"issuer\": \"\",\r\n  \"fileLogo\": \"\",\r\n  \"signingCertificate\": \"\",\r\n  \r\n  \"idpMetaData\": \"\",\r\n  \"autorizationEndPoint\": \"\",\r\n  \"tokenEndPoint\": \"\",\r\n  \"protocolBinding\": \"\",\r\n  \"clientId\": \"\",\r\n  \"clientSecret\": \"\",\r\n  \"redirectUrl\": \"\",\r\n  \"loginUrl\": \"\",\r\n  \"entityId\": \"\",\r\n  \"reAuthenticateUser\": \"\",\r\n  \"identifyby\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://qa.api-ssa.etugra.com.pk:6060/rss/service/admin/v1/globalconnectors/add",
+					"protocol": "https",
+					"host": [
+						"qa",
+						"api-ssa",
+						"etugra",
+						"com",
+						"pk"
+					],
+					"port": "6060",
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"globalconnectors",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Global Connector",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{sam.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"code\": \"786786\",\r\n  \"connectorId\": \"12345678\",\r\n  \"status\": \"42342\",\r\n  \"provider\": \"324234\",\r\n  \"displayName\": \"2342342\",\r\n  \"issuer\": \"dicta\",\r\n  \"fileLogo\": \"242342\",\r\n  \"signingCertificate\": \"234324\",\r\n  \"idpMetaData\": \"2343242\",\r\n  \"autorizationEndPoint\": \"tester\",\r\n  \"tokenEndPoint\": \"12345\",\r\n  \"protocolBinding\": \"12345\",\r\n  \"clientId\": \"tester\",\r\n  \"clientSecret\": \"testing\",\r\n  \"redirectUrl\": \"fsfsdf\",\r\n  \"loginUrl\": \"4234234\",\r\n  \"entityId\": \"2424234\",\r\n  \"reAuthenticateUser\": false,\r\n  \"identifyby\": \"dicta\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://qa.api-ssa.etugra.com.pk:6060/rss/service/admin/v1/globalconnectors/update",
+					"protocol": "https",
+					"host": [
+						"qa",
+						"api-ssa",
+						"etugra",
+						"com",
+						"pk"
+					],
+					"port": "6060",
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"globalconnectors",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Global-Connectors",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/globalconnectors/list",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"globalconnectors",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Alert-Config [Email]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"emailNotification\": true,\r\n  \"senderemail\": \"shahid.munawar@dictalabs.com\",\r\n  \"serveraddress\": \"https://qa.app-ssa.etugra.com.pk/\",\r\n  \"port\": \"4220\",\r\n  \"sleepintervals\": \"6 hours\",\r\n  \"faliureretries\": \"15\",\r\n  \"emailId\": \"shahidmunawar8@gmail.com\",\r\n  \"password\": \"Ilovepak\",\r\n  \"smtpAuthentication\": true,\r\n  \"tlsauthentication\": false,\r\n  \"passwordauthentication\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/alerts/email",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"alerts",
+						"email"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Alert-Configs [Email]",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/alerts/email/list",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"alerts",
+						"email",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Alert-Config [SMS]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"enable\": true,\r\n  \"smsGatewayType\": \"Mobile Authentication\",\r\n  \"serverAddress\": \"https://qa.api-ssa.etugra.com.pk:6060/ssa/\",\r\n  \"accessToken\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/alerts/sms",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"alerts",
+						"sms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Alert-Config [SMS]",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/alerts/sms/list",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"alerts",
+						"sms",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System Alerts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"emailAlert\": true,\r\n  \"emailAlertDuration\": \"string\",\r\n  \"smsAlert\": true,\r\n  \"smsAlertDuration\": \"string\",\r\n  \"businessApplicationRetriesAlert\": true,\r\n  \"businessApplicationRetriesAlertDuration\": \"string\",\r\n  \"databaseMonitoringAlert\": true,\r\n  \"databaseMonitoringAlertDuration\": \"string\",\r\n  \"expiredOtpAlert\": true,\r\n  \"expiredOtpAlertDuration\": \"string\",\r\n  \"expiredAuthorizationRemovalAlert\": true,\r\n  \"expiredAuthorizationRemovalAlertDuration\": \"string\",\r\n  \"licenseExpiryAlert\": true,\r\n  \"licenseExpiryAlertDuration\": \"string\",\r\n  \"operationFailureAlert\": true,\r\n  \"operationFailureAlertDuration\": \"string\",\r\n  \"operatorCertificateRenewalAlert\": true,\r\n  \"operatorCertificateRenewalAlertDuration\": \"string\",\r\n  \"hsmUnavailabilityAlert\": true,\r\n  \"hsmUnavailabilityAlertDuration\": \"string\",\r\n  \"systemHealthAlert\": true,\r\n  \"systemHealthAlertDuration\": \"string\",\r\n  \"transactionLogsArchivingAlert\": true,\r\n  \"transactionLogsArchivingAlertDuration\": \"string\",\r\n  \"userCertificateExpiryAlert\": true,\r\n  \"userCertificateExpiryAlertDuration\": \"string\",\r\n  \"hmacVerificationAlert\": true,\r\n  \"hmacVerificationAlertDuration\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/alerts/system",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"alerts",
+						"system"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get System Alerts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/alerts/list",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"alerts",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Business-App",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"clientId\": \"ssa.testClient\",\r\n  \"redirectUrl\": \"www.dictalabs.com\",\r\n  \"secret\": \"Ilovepak\",\r\n  \"defaultSsaTemplate\": \"ssa.template.003\",\r\n  \"clientName\": \"SSA Test Client\",\r\n  \"email\": \"shahidmunawar8@gmail.com\",\r\n  \"mobile\": \"03218351459\",\r\n  \"status\": \"ACTIVE\",\r\n  \"allowedTemplates\": [\r\n    \"demo.temp,ssa.template.001,ssa.template.002,ssa.template.003,ssa.template.004,ssa.template.005\"\r\n  ],\r\n  \"description\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/businessapplication/add",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"businessapplication",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Business-Apps",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssa.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"clientId\": \"string\",\r\n  \"redirectUrl\": \"string\",\r\n  \"secret\": \"string\",\r\n  \"defaultSsaTemplate\": \"string\",\r\n  \"clientName\": \"string\",\r\n  \"email\": \"string\",\r\n  \"mobile\": \"string\",\r\n  \"status\": \"ACTIVE\",\r\n  \"allowedTemplates\": [\r\n    \"string\"\r\n  ],\r\n  \"description\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ssa.address}}/rss/service/admin/v1/businessapplication/list",
+					"host": [
+						"{{ssa.address}}"
+					],
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"businessapplication",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Globel Connector",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{sam.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"code\": \"786786\",\r\n  \"connectorId\": \"testing\",\r\n  \"status\": \"ACTIVE\",\r\n  \"provider\": \"OIDC\",\r\n  \"displayName\": \"Tester\",\r\n  \"issuer\": \"dicta\",\r\n  \"fileLogo\": \"\",\r\n  \"signingCertificate\": \"string\",\r\n  \"idpMetaData\": \"string\",\r\n  \"autorizationEndPoint\": \"string\",\r\n  \"tokenEndPoint\": \"string\",\r\n  \"protocolBinding\": \"string\",\r\n  \"clientId\": \"string\",\r\n  \"clientSecret\": \"string\",\r\n  \"redirectUrl\": \"string\",\r\n  \"loginUrl\": \"string\",\r\n  \"entityId\": \"string\",\r\n  \"reAuthenticateUser\": true,\r\n  \"identifyby\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://qa.api-ssa.etugra.com.pk:6060/rss/service/admin/v1/globalconnectors/add",
+					"protocol": "https",
+					"host": [
+						"qa",
+						"api-ssa",
+						"etugra",
+						"com",
+						"pk"
+					],
+					"port": "6060",
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"globalconnectors",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register signng user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{sam.accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"code\": \"786786\",\r\n  \"connectorId\": \"testing\",\r\n  \"status\": \"ACTIVE\",\r\n  \"provider\": \"OIDC\",\r\n  \"displayName\": \"Tester\",\r\n  \"issuer\": \"dicta\",\r\n  \"fileLogo\": \"\",\r\n  \"signingCertificate\": \"string\",\r\n  \"idpMetaData\": \"string\",\r\n  \"autorizationEndPoint\": \"string\",\r\n  \"tokenEndPoint\": \"string\",\r\n  \"protocolBinding\": \"string\",\r\n  \"clientId\": \"string\",\r\n  \"clientSecret\": \"string\",\r\n  \"redirectUrl\": \"string\",\r\n  \"loginUrl\": \"string\",\r\n  \"entityId\": \"string\",\r\n  \"reAuthenticateUser\": true,\r\n  \"identifyby\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://qa.api-ssa.etugra.com.pk:6060/rss/service/admin/v1/globalconnectors/add",
+					"protocol": "https",
+					"host": [
+						"qa",
+						"api-ssa",
+						"etugra",
+						"com",
+						"pk"
+					],
+					"port": "6060",
+					"path": [
+						"rss",
+						"service",
+						"admin",
+						"v1",
+						"globalconnectors",
+						"add"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
